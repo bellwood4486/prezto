@@ -13,3 +13,20 @@ fi
 # Customize to your needs...
 # rbenv
 eval "$(rbenv init -)"
+
+# Rails
+alias br='bin/rails'
+alias be='bundle exec'
+
+# goenv and go
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+# add GOPATH and GOROOT to your shell after eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+
+# ghq & peco
+alias g='cd $(ghq root)/$(ghq list | peco)'
+alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+
