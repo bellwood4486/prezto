@@ -21,14 +21,37 @@ alias be='bundle exec'
 # goenv and go
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
+export GOENV_DISABLE_GOPATH=1
 eval "$(goenv init -)"
 # add GOPATH and GOROOT to your shell after eval "$(goenv init -)"
 export GOPATH="$HOME/go"
-export PATH="$GOROOT/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
+export GOENV_GO_LATEST_VER=$(goenv versions --bare | tail -n1)
+goenv global $GOENV_GO_LATEST_VER
+
+# cargo(rust package manager)
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # ghq & peco
 # alias g='ghq look $(ghq list | peco)' # ghq lookがやや遅い
 alias g='cd $(ghq list -p | peco)'
 alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+# goland
+alias gl=goland
+
+# docker
+alias d='docker'
+alias dc='docker-compose'
+alias dcnt='docker container'
+alias dcur='docker container ls -f status=running -l -q'
+alias dexec='docker container exec -it $(dcur)'
+alias dimg='docker image'
+alias drun='docker container run --rm -d'
+alias drunit='docker container run --rm -it'
+alias dstop='docker container stop $(dcur)'
 
